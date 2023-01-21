@@ -24,6 +24,12 @@ export class App extends Component {
     );
   };
 
+  removeContact = contactId => {
+    this.setState(prev => ({
+      contacts: prev.contacts.filter(({ id }) => id !== contactId),
+    }));
+  };
+
   render() {
     return (
       <div
@@ -37,11 +43,18 @@ export class App extends Component {
         }}
       >
         <h1>Phonebook</h1>
-        <ContactForm userContacts={this.addListUser} />
+        <ContactForm
+          userContacts={this.addListUser}
+          contacts={this.state.contacts}
+        />
 
         <h2>Contacts</h2>
         <Filter nameFilter={this.state.filter} handleUser={this.handleUser} />
-        <ContactList contacts={this.state.contacts} findUser={this.findUser} />
+        <ContactList
+          contacts={this.state.contacts}
+          findUser={this.findUser}
+          removeContact={this.removeContact}
+        />
       </div>
     );
   }

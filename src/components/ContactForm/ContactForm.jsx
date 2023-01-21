@@ -17,12 +17,17 @@ export class ContactForm extends Component {
   };
 
   addContact = e => {
+    console.log('e.target.value :>> ', this.state.name);
+    console.log('this.props.contacts', this.props.contacts);
     e.preventDefault();
     this.props.userContacts({
       name: this.state.name,
       phoneNumber: this.state.number,
       id: nanoid(),
     });
+    this.props.contacts.map(
+      ({ name }) => name === this.state.name && alert('123')
+    );
   };
 
   render() {
