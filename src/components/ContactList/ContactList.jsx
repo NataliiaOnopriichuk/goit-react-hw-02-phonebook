@@ -1,10 +1,10 @@
-export const ContactList = ({ contacts }) => {
-  console.log('contacts :>> ', contacts);
+import { ContactItem } from '../ContactItem/ContactItem';
+import s from './ContactList.module.css';
+
+export const ContactList = ({ contacts, findUser }) => {
   return (
-    <ul className="cony">
-      {contacts.map(({ name, id }) => (
-        <li key={id}>{name}</li>
-      ))}
+    <ul className={s.list}>
+      <ContactItem contacts={contacts} findUser={findUser}></ContactItem>
     </ul>
   );
 };
