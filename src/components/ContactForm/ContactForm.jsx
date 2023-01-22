@@ -1,6 +1,7 @@
 import { Component } from 'react';
 import { nanoid } from 'nanoid';
 import s from './ContactForm.module.css';
+import PropTypes from 'prop-types';
 
 export class ContactForm extends Component {
   state = {
@@ -16,6 +17,10 @@ export class ContactForm extends Component {
     this.setState({ number: e.target.value });
   };
 
+  handleReset = () => {
+    this.setState({ name: '', number: '' });
+  };
+
   addContact = e => {
     console.log('e.target.value :>> ', this.state.name);
     console.log('this.props.contacts', this.props.contacts);
@@ -25,9 +30,10 @@ export class ContactForm extends Component {
       phoneNumber: this.state.number,
       id: nanoid(),
     });
-    this.props.contacts.map(
-      ({ name }) => name === this.state.name && alert('123')
-    );
+    // this.props.contacts.map(
+    //   ({ name }) => name === this.state.name && alert('123')
+    // );
+    this.handleReset();
   };
 
   render() {
@@ -62,3 +68,15 @@ export class ContactForm extends Component {
     );
   }
 }
+
+ContactForm.propTypes = {
+  userContacts: PropTypes.func.isRequired,
+  contacts: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+      name: PropTypes.string.isRequired,
+      phoneNumber: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+        .isRequired,
+    })
+  ).isRequired,
+};

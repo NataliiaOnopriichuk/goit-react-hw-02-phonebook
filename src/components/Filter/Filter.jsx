@@ -1,6 +1,6 @@
 import React from 'react';
 import s from './Filter.module.css';
-// import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
 
 export const Filter = ({ nameFilter, handleUser }) => {
   return (
@@ -16,4 +16,7 @@ export const Filter = ({ nameFilter, handleUser }) => {
   );
 };
 
-// Filter.propTypes = {};
+Filter.propTypes = {
+  nameFilter: PropTypes.string.isRequired,
+  handleUser: PropTypes.func.isRequired,
+};

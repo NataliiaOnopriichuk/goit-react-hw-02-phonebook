@@ -19,8 +19,9 @@ export class App extends Component {
   };
 
   findUser = () => {
-    return this.state.contacts.filter(({ name }) =>
-      name.toLowerCase().includes(this.state.filter.toLowerCase().trim())
+    const { contacts, filter } = this.state;
+    return contacts.filter(({ name }) =>
+      name.toLowerCase().includes(filter.toLowerCase().trim())
     );
   };
 
