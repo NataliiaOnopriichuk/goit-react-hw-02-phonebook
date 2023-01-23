@@ -22,17 +22,22 @@ export class ContactForm extends Component {
   };
 
   addContact = e => {
-    console.log('e.target.value :>> ', this.state.name);
-    console.log('this.props.contacts', this.props.contacts);
     e.preventDefault();
+
+    if (
+      this.props.contacts.some(
+        ({ name }) =>
+          name.toLowerCase().trim() === this.state.name.toLowerCase().trim()
+      )
+    )
+      return alert(`${this.state.name} is already in contacts`);
+
     this.props.userContacts({
       name: this.state.name,
       phoneNumber: this.state.number,
       id: nanoid(),
     });
-    // this.props.contacts.map(
-    //   ({ name }) => name === this.state.name && alert('123')
-    // );
+
     this.handleReset();
   };
 
